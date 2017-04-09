@@ -1,2 +1,2 @@
 #!/bin/bash
-screen -dmS servername java -Xmx2048M -jar spigot.jar nogui
+/usr/bin/screen -dmS mcserver /usr/bin/java -Xmx4096M -jar /home/minecraft/jar/spigot.jar nogui
