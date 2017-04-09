@@ -1,0 +1,23 @@
+[Unit]
+Description=Minecraft Server
+Wants=network-online.target
+BindsTo=mariadb.service
+
+[Service]
+Type=forking
+User=minecraft
+Group=minecraft
+
+WorkingDirectory=/home/minecraft/mcserver
+ExecStart=/home/minecraft/mcserver/start.sh
+ExecStop=/usr/bin/screen -S mcserver -p 0 -X stuff "stop$(printf \\r)"
+
+# Give a reasonable amount of time for the server to start up/shut down
+TimeoutSec=300
+
+
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
