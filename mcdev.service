@@ -1,0 +1,20 @@
+[Unit]
+Description=Minecraft Dev Server
+After=syslog.target
+After=network.target
+
+[Service]
+Type=forking
+User=minecraft
+Group=minecraft
+
+ExecStart=/home/minecraft/multicraft/servers/server6/start.sh
+ExecStop=/usr/bin/screen -S mcdev -p 0 -X stuff "stop$(printf \\r)"
+
+# Give a reasonable amount of time for the server to start up/shut down
+TimeoutSec=300
+
+WorkingDirectory=/home/minecraft/multicraft/servers/server6
+
+Restart=always
+RestartSec=30
