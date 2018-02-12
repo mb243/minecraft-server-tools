@@ -17,6 +17,7 @@ java -jar BuildTools.jar --rev $rev
 #added for overviewer compatibility
 rm -f ~/.minecraft/versions/${rev}/${rev}.jar
 curl -o ${rev}.jar -L https://s3.amazonaws.com/Minecraft.Download/versions/${rev}/${rev}.jar
+mkdir -p /home/minecraft/.minecraft/versions/${rev}/
 mv -f ${rev}.jar ~/.minecraft/versions/${rev}/
 
 # added for bungeecord
@@ -25,7 +26,7 @@ mv -f ${rev}.jar ~/.minecraft/versions/${rev}/
 
 # get the name of the jar file
 jarfile=$(ls -l spigot-*.jar | awk '{print $9}')
-mkdir -f $jardir
+mkdir -p $jardir
 cp -f $jarfile $jardir
 
 # set up symlink for latest
